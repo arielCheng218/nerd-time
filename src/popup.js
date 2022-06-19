@@ -3,13 +3,26 @@
 document.addEventListener("DOMContentLoaded", function () {
   console.log("dom content loaded");
   // bind handleSubmit to form onSubmit with event listener
-  var form = document.getElementById("form");
-  form.addEventListener("onSubmit", function () {
-    handleSubmit();
-  });
+  getTabInfo(setAttributes);
 });
 
-function handleSubmit() {
-  console.log("handleSubmit");
-  // authenticate to Notion
-}
+const setAttributes = (nameValue, sourceValue) => {
+  const name = document.getElementById("name");
+  const source = document.getElementById("source");
+  name.setAttribute("value", nameValue);
+  source.setAttribute("value", sourceValue);
+};
+
+const getTabInfo = (setAttributes) => {
+  chrome.tabs.query(
+    {
+      active: true,
+      currentWindow: true,
+    },
+    (tabs) => {
+      var tabName = tabs[0].title;
+      var tabURL = tabs[0].url;
+      setAttributes(tabName, tabURL);
+    }
+  );
+};
