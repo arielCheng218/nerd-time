@@ -1,0 +1,16 @@
+{
+  "name": "Nerd time",
+  "description": "",
+  "version": "1.0",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "./src/background.js"
+  },
+  "permissions": ["storage"],
+  "action": {
+    "default_popup": "./src/popup.html",
+    "default_icon": {
+      "16": "./assets/popcorn.png"
+    }
+  }
+}
